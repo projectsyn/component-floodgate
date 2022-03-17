@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: floodgate
+    app.kubernetes.io/instance: floodgate
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: floodgate
+    app.kubernetes.io/version: v0.1.0
+    name: floodgate
+  name: floodgate
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/component: floodgate
+    app.kubernetes.io/instance: floodgate
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: floodgate
+    app.kubernetes.io/version: v0.1.0
+    name: floodgate
+  type: ClusterIP

@@ -2,3 +2,25 @@ parameters:
   floodgate:
     =_metadata: {}
     namespace: syn-floodgate
+    namespaceLabels: {}
+
+    imageDay: "1"
+
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hostname: floodgate.example.com
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 32Mi
+      limits:
+        cpu: 150m
+        memory: 64Mi
+
+    images:
+      floodgate:
+        registry: docker.io
+        repository: projectsyn/floodgate
+        tag: v0.1.0
