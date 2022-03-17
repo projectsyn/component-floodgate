@@ -18,6 +18,15 @@ local serviceAccount = kube.ServiceAccount('floodgate') {
   },
 };
 
+local validateImageDay(d) =
+  assert
+    std.isString(d) :
+    'Floodgate expects parameter `imageDay` to be specified as a string';
+  assert
+    std.length(std.find(d, [ '0', '1', '2', '3', '4', '5', '6' ])) > 0 :
+    'Invalid Floodgate parameter `imageDay`: "%s", expected day of week as "0" - "6", where "0" is Sunday' % d;
+  d;
+
 local deployment = kube.Deployment('floodgate') {
   metadata+: {
     labels+: commonLabels,
@@ -29,7 +38,7 @@ local deployment = kube.Deployment('floodgate') {
           floodgate: kube.Container('floodgate') {
             image: '%(registry)s/%(repository)s:%(tag)s' % params.images.floodgate,
             env_:: {
-              FG_IMAGE_DAY: params.imageDay,
+              FG_IMAGE_DAY: validateImageDay(params.imageDay),
             },
             ports_:: {
               http: {
