@@ -27,6 +27,14 @@ local validateImageDay(d) =
     'Invalid Floodgate parameter `imageDay`: "%s", expected day of week as "0" - "6", where "0" is Sunday' % d;
   d;
 
+local healthProbe = {
+  httpGet: {
+    path: '/alive',
+    port: 8080,
+  },
+  periodSeconds: 30,
+};
+
 local deployment = kube.Deployment('floodgate') {
   metadata+: {
     labels+: commonLabels,
@@ -47,6 +55,10 @@ local deployment = kube.Deployment('floodgate') {
             },
             [if params.resources != null then 'resources']:
               std.prune(params.resources),
+            readinessProbe: healthProbe,
+            livenessProbe: healthProbe {
+              initialDelaySeconds: 3,
+            },
           },
         },
         serviceAccountName: serviceAccount.metadata.name,
