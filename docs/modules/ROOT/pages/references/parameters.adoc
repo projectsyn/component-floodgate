@@ -18,15 +18,18 @@ default:: `{}`
 
 Additional labels to add to the namespace.
 
-== `imageDay`
+== `imageBuildDay`
 
 [horizontal]
 type:: string
-default:: `"1"`
+default:: `Monday`
+allowed values:: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday` `Saturday`, `Sunday`
 
 This parameter allows users to configure Floodgate to specify on which day of the week the upgrade plan container image is built.
 
-Floodgate expects the day of the week on which the new image is built to be specified as `"0"`-`"6"`, where `"0"` is Sunday.
+The component expects the parameter to be a day of the week, with capitalized first letter, see the list provided in "allowed values" above.
+Since Floodgate itself expects the day of the week as a number, the component translates the provided image build day to `"0"` - `"6"`, where `"0"` is Sunday.
+The component uses the final value as value for environment variable `FG_IMAGE_DAY` for the Floodgate container.
 
 See the https://github.com/projectsyn/floodgate/blob/master/docs/modules/ROOT/pages/index.adoc[Floodgate documentation] for details on how Floodgate works.
 

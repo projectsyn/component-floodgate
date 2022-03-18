@@ -4,7 +4,7 @@ parameters:
     namespace: syn-floodgate
     namespaceLabels: {}
 
-    imageDay: "1"
+    imageBuildDay: Monday
 
     ingress:
       annotations:
