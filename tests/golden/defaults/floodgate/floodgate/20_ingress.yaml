@@ -21,6 +21,8 @@ spec:
                 name: floodgate
                 port:
                   name: http
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
         - floodgate.example.com
