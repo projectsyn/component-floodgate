@@ -30,10 +30,10 @@ local renderImageBuildDay(dspec) =
   };
   assert
     std.isString(dspec) :
-    'Floodgate expects parameter `imageDay` to be specified as a string';
+    'Floodgate expects parameter `imageBuildDay` to be specified as a string';
   assert
     std.objectHas(dayMap, dspec) :
-    'Invalid Floodgate parameter `imageDay`: "%s", expected day of week as "Monday" through "Sunday"' % dspec;
+    'Invalid Floodgate parameter `imageBuildDay`: "%s", expected day of week as "Monday" through "Sunday"' % dspec;
   dayMap[dspec];
 
 local healthProbe = {

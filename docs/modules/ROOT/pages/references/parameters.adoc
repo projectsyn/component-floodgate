@@ -87,5 +87,5 @@ parameters:
       organization: acmecorp
     ingress:
       hostname: floodgate.acmecorp.example.com
-    floodgateImageDay: '2'
+    imageBuildDay: Tuesday
 ----
