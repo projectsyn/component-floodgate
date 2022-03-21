@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  labels:
+    app.kubernetes.io/component: floodgate
+    app.kubernetes.io/instance: floodgate
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: floodgate
+    app.kubernetes.io/version: v0.1.0
+    name: floodgate.example.com
+  name: floodgate.example.com
+spec:
+  rules:
+    - host: floodgate.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: floodgate
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - floodgate.example.com
+      secretName: floodgate.example.com-tls

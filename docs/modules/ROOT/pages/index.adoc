@@ -1,5 +1,14 @@
 = floodgate
 
-floodgate is a Commodore component to manage floodgate.
+`floodgate` is a Commodore component to manage https://github.com/projectsyn/floodgate[Floodgate].
+
+Floodgate provides URLs suitable to use as https://github.com/rancher/system-upgrade-controller[System Upgrade Controller] channels for upgrade plans which use a container image which is tagged with its build date.
+
+Floodgate was originally implemented to allow configuring channels with predefined maintenance windows for plans which use the Project Syn https://github.com/projectsyn/system-upgrade-controller-package-upgrade[System Upgrade Controller package upgrade] container image.
+
+See the https://github.com/projectsyn/floodgate/blob/master/docs/modules/ROOT/pages/index.adoc[Floodgate documentation] for more details on Floodgate.
+
+The Project Syn component https://github.com/projectsyn/component-system-upgrade-controller[system-upgrade-controller] has support for configuring upgrade plans which use a Floodgate instance.
+See the component's reference docs for details on xref:system-upgrade-controller:references/parameters.adoc#_plans_p_floodgate[how to configure plans which use Floodgate].
 
 See the xref:references/parameters.adoc[parameters] reference for further details.

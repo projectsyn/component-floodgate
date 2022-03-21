@@ -10,10 +10,82 @@ default:: `syn-floodgate`
 
 The namespace in which to deploy this component.
 
+== `namespaceLabels`
+
+[horizontal]
+type:: object
+default:: `{}`
+
+Additional labels to add to the namespace.
+
+== `imageBuildDay`
+
+[horizontal]
+type:: string
+default:: `Monday`
+allowed values:: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday` `Saturday`, `Sunday`
+
+This parameter allows users to configure Floodgate to specify on which day of the week the upgrade plan container image is built.
+
+The component expects the parameter to be a day of the week, with capitalized first letter, see the list provided in "allowed values" above.
+Since Floodgate itself expects the day of the week as a number, the component translates the provided image build day to `"0"` - `"6"`, where `"0"` is Sunday.
+The component uses the final value as value for environment variable `FG_IMAGE_DAY` for the Floodgate container.
+
+See the https://github.com/projectsyn/floodgate/blob/master/docs/modules/ROOT/pages/index.adoc[Floodgate documentation] for details on how Floodgate works.
+
+== `ingress`
+
+Configuration for the Floodgate Ingress object.
+
+=== `annotations`
+
+[horizontal]
+type:: object
+default::
++
+[source,yaml]
+----
+cert-manager.io/cluster-issuer: letsencrypt-production
+----
+
+Annotations to add to the Floodgate ingress object.
+Individual annotations can be removed by setting their value to `null`.
+
+=== `hostname`
+
+[horizontal]
+type:: string
+default:: `floodgate.example.com`
+
+The hostname to configure on the Ingress object.
+
+== `resources`
+
+[horizontal]
+type:: object
+default:: https://github.com/projectsyn/component-floodgate/blob/master/class/defaults.yml[See `class/defaults.yml`]
+
+The resource requests and limits for the Floodgate container.
+Individual requests or limits can be removed by setting the fields to `null`.
+
+== `images.floodgate`
+
+[horizontal]
+type:: object
+default:: https://github.com/projectsyn/component-floodgate/blob/master/class/defaults.yml[See `class/defaults.yml`]
+
+The container image to use for Floodgate.
 
 == Example
 
 [source,yaml]
 ----
-namespace: example-namespace
+parameters:
+  floodgate:
+    namespace: acmecorp-floodgate-prod
+    namespaceLabels:
+      organization: acmecorp
+    ingress:
+      hostname: floodgate.acmecorp.example.com
+    imageBuildDay: Tuesday
 ----

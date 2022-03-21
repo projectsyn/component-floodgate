@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: floodgate
+    app.kubernetes.io/instance: floodgate
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: floodgate
+    app.kubernetes.io/version: v0.1.0
+    name: floodgate
+  name: floodgate
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: floodgate
+      app.kubernetes.io/instance: floodgate
+      app.kubernetes.io/managed-by: commodore
+      app.kubernetes.io/name: floodgate
+      app.kubernetes.io/version: v0.1.0
+      name: floodgate
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app.kubernetes.io/component: floodgate
+        app.kubernetes.io/instance: floodgate
+        app.kubernetes.io/managed-by: commodore
+        app.kubernetes.io/name: floodgate
+        app.kubernetes.io/version: v0.1.0
+        name: floodgate
+    spec:
+      containers:
+        - args: []
+          env:
+            - name: FG_IMAGE_DAY
+              value: '1'
+          image: docker.io/projectsyn/floodgate:v0.1.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /alive
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 30
+          name: floodgate
+          ports:
+            - containerPort: 8080
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /alive
+              port: 8080
+            periodSeconds: 30
+          resources:
+            limits:
+              cpu: 150m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 32Mi
+          stdin: false
+          tty: false
+          volumeMounts: []
+      imagePullSecrets: []
+      initContainers: []
+      serviceAccountName: floodgate
+      terminationGracePeriodSeconds: 30
+      volumes: []
