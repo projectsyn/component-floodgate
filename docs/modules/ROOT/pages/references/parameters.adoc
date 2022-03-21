@@ -51,6 +51,13 @@ cert-manager.io/cluster-issuer: letsencrypt-production
 Annotations to add to the Floodgate ingress object.
 Individual annotations can be removed by setting their value to `null`.
 
+[NOTE]
+====
+Removing the `cert-manager.io/cluster-issuer` annotation may break the Ingress unless a TLS certificate is provided through other means.
+
+The component currently expects that the TLS key and certificate for the Ingress are available in secret `<hostname>-tls`.
+====
+
 === `hostname`
 
 [horizontal]

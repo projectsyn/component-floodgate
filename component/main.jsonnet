@@ -95,6 +95,8 @@ local ingress = kube.Ingress(params.ingress.hostname) {
         http: {
           paths: [
             {
+              path: '/',
+              pathType: 'Prefix',
               backend: service.name_port,
             },
           ],
