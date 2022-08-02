@@ -50,6 +50,11 @@ local deployment = kube.Deployment('floodgate') {
   },
   spec+: {
     template+: {
+      metadata+: {
+        labels+: {
+          'app.kubernetes.io/version':: null,
+        },
+      },
       spec+: {
         containers_:: {
           floodgate: kube.Container('floodgate') {
