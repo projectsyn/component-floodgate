@@ -20,6 +20,5 @@ spec:
     app.kubernetes.io/instance: floodgate
     app.kubernetes.io/managed-by: commodore
     app.kubernetes.io/name: floodgate
-    app.kubernetes.io/version: v0.2.0
     name: floodgate
   type: ClusterIP
