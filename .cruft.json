@@ -1,0 +1,25 @@
+{
+  "template": "https://github.com/projectsyn/commodore-component-template.git",
+  "commit": "3579ec7932501e713856a6cae23fcea3ae0ab242",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "name": "floodgate",
+      "slug": "floodgate",
+      "parameter_key": "floodgate",
+      "test_cases": "defaults",
+      "add_lib": "n",
+      "add_pp": "n",
+      "add_golden": "y",
+      "add_matrix": "y",
+      "add_go_unit": "n",
+      "copyright_holder": "VSHN AG <info@vshn.ch>",
+      "copyright_year": "2023",
+      "github_owner": "projectsyn",
+      "github_name": "component-floodgate",
+      "github_url": "https://github.com/projectsyn/component-floodgate",
+      "_template": "https://github.com/projectsyn/commodore-component-template.git"
+    }
+  },
+  "directory": null
+}
