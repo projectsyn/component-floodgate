@@ -1,6 +1,7 @@
 parameters:
   floodgate:
-    =_metadata: {}
+    =_metadata:
+      multi_tenant: true
     namespace: syn-floodgate
     namespaceLabels: {}
 
